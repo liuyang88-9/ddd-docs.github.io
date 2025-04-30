@@ -1,0 +1,369 @@
+/* 导入Ubuntu Mono字体和其他现代化字体 */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600&display=swap');
+
+:root {
+    /* 字体设置 */
+    --vp-font-family-mono: 'Ubuntu Mono', monospace;
+    --vp-font-family-base: 'Inter', 'Manrope', sans-serif;
+
+    /* 颜色系统 - 现代化配色 */
+    --vp-c-brand: #3a5ccc;
+    --vp-c-brand-light: #4e6fd6;
+    --vp-c-brand-lighter: #6382e0;
+    --vp-c-brand-dark: #2d49a3;
+    --vp-c-brand-darker: #20357a;
+
+    /* 边框样式 */
+    --vp-c-border: rgba(60, 60, 60, 0.12);
+    --vp-c-divider: rgba(60, 60, 60, 0.12);
+
+    /* 阴影效果 */
+    --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.08);
+    --vp-shadow-2: 0 3px 6px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
+    --vp-shadow-3: 0 6px 12px rgba(0, 0, 0, 0.08), 0 16px 32px rgba(0, 0, 0, 0.06);
+    --vp-shadow-4: 0 10px 20px rgba(0, 0, 0, 0.08), 0 20px 40px rgba(0, 0, 0, 0.08);
+
+    /* 圆角 */
+    --vp-border-radius: 8px;
+}
+
+/* 亮色主题特殊变量 */
+.dark {
+    --vp-c-bg: #111827;
+    --vp-c-bg-alt: #1f2937;
+    --vp-c-bg-soft: #1a2234;
+}
+
+/* 全局优化 */
+.VPDoc {
+    font-family: var(--vp-font-family-base), serif;
+    letter-spacing: -0.015em;
+}
+
+.VPNavBar {
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid var(--vp-c-border);
+    box-shadow: var(--vp-shadow-1);
+    transition: all 0.3s ease;
+}
+
+.dark .VPNavBar {
+    background-color: rgba(17, 24, 39, 0.85);
+}
+
+.VPNavBar.has-sidebar .curtain {
+    background-color: transparent !important;
+}
+
+/* 侧边栏样式优化 */
+.VPSidebar {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid var(--vp-c-border);
+    font-family: var(--vp-font-family-base), serif;
+    transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.dark .VPSidebar {
+    background-color: rgba(17, 24, 39, 0.6);
+}
+
+/* 按钮动效 */
+.VPButton {
+    transition: all 0.3s ease;
+}
+
+.VPButton:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--vp-shadow-2);
+}
+
+/* 卡片悬浮效果 */
+.vp-doc .custom-block {
+    border-radius: var(--vp-border-radius);
+    box-shadow: var(--vp-shadow-1);
+    transition: all 0.3s ease;
+}
+
+.vp-doc .custom-block:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--vp-shadow-2);
+}
+
+/* 代码块增强 */
+.vp-doc div[class*='language-'] {
+    border-radius: var(--vp-border-radius);
+    box-shadow: var(--vp-shadow-2);
+    transition: all 0.3s ease;
+    margin: 24px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.vp-doc div[class*='language-']:hover {
+    box-shadow: var(--vp-shadow-3);
+    transform: translateY(-2px);
+}
+
+.vp-doc div[class*='language-']::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12px;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: #ff5f56;
+    box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
+    margin-top: 12px;
+    z-index: 2;
+}
+
+.vp-doc div[class*='language-'] pre {
+    margin-top: 32px;
+    padding: 0 1.5rem 1.5rem;
+}
+
+/* 拷贝按钮样式优化 */
+.vp-doc div[class*='language-'] .copy {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: all 0.3s ease;
+}
+
+.vp-doc div[class*='language-']:hover .copy {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 代码语言标识 */
+.vp-doc div[class*='language-']::after {
+    content: attr(data-language);
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-family: var(--vp-font-family-mono), serif;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 2px 8px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* 设置行内代码字体 */
+.vp-doc code:not([class*="language-"]) {
+    font-family: var(--vp-font-family-mono), serif;
+    border-radius: 4px;
+    padding: 0.2em 0.4em;
+    background-color: rgba(60, 60, 60, 0.08);
+    transition: background-color 0.3s;
+}
+
+.dark .vp-doc code:not([class*="language-"]) {
+    background-color: rgba(235, 235, 235, 0.08);
+}
+
+.vp-doc code:not([class*="language-"]):hover {
+    background-color: rgba(60, 60, 60, 0.14);
+}
+
+.dark .vp-doc code:not([class*="language-"]):hover {
+    background-color: rgba(235, 235, 235, 0.14);
+}
+
+/* 标题动效 */
+.vp-doc h1, .vp-doc h2, .vp-doc h3 {
+    position: relative;
+    margin-top: 2rem;
+    margin-bottom: 1.25rem;
+    transition: all 0.2s ease;
+}
+
+.vp-doc h1::after, .vp-doc h2::after {
+    content: '';
+    position: absolute;
+    bottom: -0.25rem;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--vp-c-brand), transparent);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.vp-doc h1:hover::after, .vp-doc h2:hover::after {
+    width: 140px;
+}
+
+/* 设置英文文本字体 */
+.vp-doc p:lang(en),
+.vp-doc li:lang(en),
+.vp-doc h1:lang(en),
+.vp-doc h2:lang(en),
+.vp-doc h3:lang(en),
+.vp-doc h4:lang(en),
+.vp-doc h5:lang(en),
+.vp-doc h6:lang(en),
+.vp-doc a:lang(en),
+.vp-doc span:lang(en) {
+    font-family: var(--vp-font-family-mono), var(--vp-font-family-base), serif;
+}
+
+/* 首页样式优化 */
+.VPHero {
+    padding: 5rem 0;
+}
+
+.VPHero .name, .VPHero .text {
+    transition: all 0.5s ease;
+}
+
+.VPHero .name:hover, .VPHero .text:hover {
+    text-shadow: 0 0 20px rgba(var(--vp-c-brand-dark), 0.4);
+}
+
+.VPHero .actions {
+    margin-top: 2.5rem;
+}
+
+.VPFeatures {
+    padding: 2rem 0;
+}
+
+.VPFeatures .item {
+    border-radius: var(--vp-border-radius);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--vp-c-border);
+}
+
+.VPFeatures .item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--vp-shadow-3);
+    border-color: var(--vp-c-brand-light);
+}
+
+/* 列表样式 */
+.vp-doc ul, .vp-doc ol {
+    padding-left: 1.5rem;
+}
+
+.vp-doc li + li {
+    margin-top: 0.25rem;
+}
+
+.vp-doc ul li::marker {
+    color: var(--vp-c-brand);
+}
+
+/* 表格样式 */
+.vp-doc table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 24px 0;
+    border-radius: var(--vp-border-radius);
+    overflow: hidden;
+    box-shadow: var(--vp-shadow-1);
+}
+
+.vp-doc tr:nth-child(2n) {
+    background-color: rgba(60, 60, 60, 0.04);
+}
+
+.dark .vp-doc tr:nth-child(2n) {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.vp-doc th, .vp-doc td {
+    padding: 12px 16px;
+    border: 1px solid var(--vp-c-border);
+}
+
+.vp-doc th {
+    background-color: rgba(60, 60, 60, 0.06);
+    font-weight: 600;
+}
+
+.dark .vp-doc th {
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* 链接样式 */
+.vp-doc a {
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
+.vp-doc a:hover {
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    color: var(--vp-c-brand);
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(60, 60, 60, 0.2);
+    border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background-color: rgba(235, 235, 235, 0.2);
+}
+
+/* 对于不能自动检测语言的英文文本，可以通过添加特定类来手动设置 */
+.ubuntu-mono {
+    font-family: var(--vp-font-family-mono), serif !important;
+}
+
+/* 页面过渡动画 */
+.fade-slide-y-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.fade-slide-y-leave-active {
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.fade-slide-y-enter-from,
+.fade-slide-y-leave-to {
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+/* 卡片样式 */
+.vp-card {
+    border-radius: var(--vp-border-radius);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border: 1px solid var(--vp-c-border);
+    background-color: var(--vp-c-bg-soft);
+    box-shadow: var(--vp-shadow-1);
+    transition: all 0.3s ease;
+}
+
+.vp-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--vp-shadow-2);
+    border-color: var(--vp-c-brand-light);
+}
+
+/* 亮色/暗色模式切换动画 */
+html {
+    transition: background-color 0.5s;
+} 
